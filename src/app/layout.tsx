@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${jakartaSans.variable}  antialiased`}>
       <body>
-        <main className="font-jakartasans mt-6 mx-auto overflow-hidden overflow-y-auto max-w-[430px]">
+        <main className="font-jakartasans mt-6 mx-auto max-w-[430px]">
           <div className="md:px-0 px-4 mb-[100px]">{children}</div>
           <Navbar />
         </main>

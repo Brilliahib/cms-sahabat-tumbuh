@@ -37,6 +37,34 @@ export default function GameList() {
       color: "primary",
       tag: "messages",
     },
+    {
+      icon: <Image />,
+      label: "Tebak Gambar",
+      description: "Tebak gambar yang ditampilkan.",
+      color: "primary",
+      tag: "pictures",
+    },
+    {
+      icon: <Divide />,
+      label: "Berhitung",
+      description: "Asah kemampuan berhitungmu.",
+      color: "primary",
+      tag: "operations",
+    },
+    {
+      icon: <Palette />,
+      label: "Pilih Warna",
+      description: "Pilih warna yang sesuai.",
+      color: "primary",
+      tag: "colors",
+    },
+    {
+      icon: <MessagesSquare />,
+      label: "Pesan Bunda",
+      description: "Kirim pesan untuk Bunda.",
+      color: "primary",
+      tag: "messages",
+    },
   ];
 
   return (
