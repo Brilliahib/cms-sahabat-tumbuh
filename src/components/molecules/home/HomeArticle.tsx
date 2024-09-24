@@ -9,7 +9,7 @@ export default function HomeArticle() {
           <h1 className="font-semibold text-base">Artikel</h1>
           <Link
             href={"/article"}
-            className="font-semibold text-primary text-base hover:underline"
+            className="font-semibold text-primary md:text-base text-sm hover:underline"
           >
             Lihat semua
           </Link>
