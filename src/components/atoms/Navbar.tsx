@@ -11,7 +11,7 @@ export default function Navbar() {
     { href: "/", icon: Home },
     { href: "/analytics", icon: ChartColumnBig },
     { href: "/games", icon: Gamepad },
-    { href: "/profile", icon: User },
+    { href: "/account", icon: User },
   ];
 
   return (
