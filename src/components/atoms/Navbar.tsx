@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const navItems = [
     { href: "/", icon: Home },
-    { href: "/analytics", icon: ChartColumnBig },
+    { href: "/tracking", icon: ChartColumnBig },
     { href: "/games", icon: Gamepad },
     { href: "/account", icon: User },
   ];

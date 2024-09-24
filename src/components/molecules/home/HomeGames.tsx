@@ -9,7 +9,7 @@ export default function HomeGames() {
           <h1 className="font-semibold text-base">Edukasi Games</h1>
           <Link
             href={"/games"}
-            className="font-semibold text-primary text-base hover:underline"
+            className="font-semibold text-primary md:text-base text-sm hover:underline"
           >
             Lihat semua
           </Link>

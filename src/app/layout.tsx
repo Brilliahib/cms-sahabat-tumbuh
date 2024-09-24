@@ -4,9 +4,12 @@ import "./globals.css";
 import Navbar from "@/components/atoms/Navbar";
 
 export const metadata: Metadata = {
-  title: "Sahabat Tumbuh",
+  title: "Tumbuh Sahabat",
   description:
-    "Computer Engineering Research Club adalah sebuah wadah atau komunitas yang dirancang khusus untuk mahasiswa teknik komputer guna mendalami dan mengeksplorasi minat serta keahlian mereka.",
+    "Tumbuh Sahabat adalah aplikasi berbasis web yang dirancang khusus untuk membantu anak-anak dengan Down syndrome dalam memantau asupan gizi mereka dan belajar melalui permainan edukatif.",
+  icons: {
+    icon: "/images/favicon.ico",
+  },
 };
 
 const jakartaSans = Plus_Jakarta_Sans({
