@@ -26,7 +26,7 @@ export default function CardGames() {
           <div
             className={cn(
               "p-3 rounded-full w-fit",
-              `bg-${game.color}/20`,
+              `bg-primary/20`,
               `text-${game.color}`
             )}
           >
