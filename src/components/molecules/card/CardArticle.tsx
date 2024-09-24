@@ -13,7 +13,7 @@ export default function CardArticle() {
                 alt="Food"
                 width={2070}
                 height={1380}
-                className="md:w-full max-w-[250px] max-h-[180px] object-cover rounded-md"
+                className="md:w-full w-[300px] max-h-[180px] object-cover rounded-md"
               />
             </CardHeader>
             <div className="w-full space-y-2">
@@ -38,7 +38,7 @@ export default function CardArticle() {
                 alt="Food"
                 width={2070}
                 height={1380}
-                className="md:w-full max-w-[250px] max-h-[180px] object-cover rounded-md"
+                className="md:w-full w-[300px] max-h-[180px] object-cover rounded-md"
               />
             </CardHeader>
             <div className="w-full space-y-2">
@@ -63,7 +63,7 @@ export default function CardArticle() {
                 alt="Food"
                 width={2070}
                 height={1380}
-                className="md:w-full max-w-[250px] max-h-[180px] object-cover rounded-md"
+                className="md:w-full w-[300px] max-h-[180px] object-cover rounded-md"
               />
             </CardHeader>
             <div className="w-full space-y-2">
