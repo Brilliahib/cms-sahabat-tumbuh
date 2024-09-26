@@ -4,7 +4,7 @@ import CardGames from "../card/CardGames";
 export default function HomeGames() {
   return (
     <>
-      <div className="space-y-4">
+      <div className="md:hidden flex flex-col space-y-4">
         <div className="w-full flex justify-between">
           <h1 className="font-semibold text-base">Edukasi Games</h1>
           <Link

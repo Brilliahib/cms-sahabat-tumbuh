@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/atoms/Navbar";
+import NavbarDesktop from "@/components/organism/navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Tumbuh Sahabat",
@@ -27,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${jakartaSans.variable}  antialiased`}>
       <body>
-        <main className="font-jakartasans mt-6 mx-auto max-w-[430px]">
+        <main className="font-jakartasans md:mt-0 mt-6 mx-auto max-w-6xl">
+          <NavbarDesktop />
           <div className="md:px-0 px-4 mb-[100px]">{children}</div>
           <Navbar />
         </main>
