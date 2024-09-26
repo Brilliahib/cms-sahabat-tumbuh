@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function HomeHeader() {
   return (
     <>
-      <div className="flex justify-between items-center md:mb-8 mb-4">
+      <div className="md:hidden flex justify-between items-center md:mb-8 mb-4">
         <div>
           <Image
             src={"/images/logo_full.png"}

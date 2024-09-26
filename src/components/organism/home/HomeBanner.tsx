@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function HomeBanner() {
   return (
     <>
-      <div className="py-8">
+      <div className="py-8 md:hidden flex">
         <Link href={"/tracking"}>
           <Image
             src="/images/banner.png"

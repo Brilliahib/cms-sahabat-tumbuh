@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed bottom-0 w-full z-50">
+      <div className="md:hidden fixed bottom-0 w-full z-50">
         <div className="flex bg-white justify-around items-center max-w-[430px] md:py-5 py-3 border-t-[1px] border-gray-200 text-muted-foreground">
           {navItems.map((item, index) => {
             const Icon = item.icon;
