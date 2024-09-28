@@ -5,6 +5,7 @@ import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-wasm";
 import NavHeader from "@/components/atoms/headers/NavHeader";
+import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 
 const ObjectDetection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -12,7 +13,6 @@ const ObjectDetection = () => {
   const [model, setModel] = useState<cocoSsd.ObjectDetection | null>(null);
   const [backendLoaded, setBackendLoaded] = useState(false);
 
-  // Memuat TensorFlow backend
   useEffect(() => {
     const initializeTensorFlow = async () => {
       try {
@@ -45,7 +45,6 @@ const ObjectDetection = () => {
     }
   }, []);
 
-  // Deteksi objek
   const detectObjects = async () => {
     if (model && videoRef.current && videoRef.current.readyState === 4) {
       const predictions = await model.detect(videoRef.current);
@@ -53,31 +52,22 @@ const ObjectDetection = () => {
     }
   };
 
-  // Menggambar kotak prediksi berdasarkan hasil deteksi
   const drawPredictions = (predictions: cocoSsd.DetectedObject[]) => {
     if (canvasRef.current && videoRef.current) {
       const ctx = canvasRef.current.getContext("2d");
       const videoWidth = videoRef.current.videoWidth;
       const videoHeight = videoRef.current.videoHeight;
-
-      // Sinkronkan ukuran canvas dengan ukuran video
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
       if (ctx) {
-        // Bersihkan canvas sebelum menggambar ulang
         ctx.clearRect(0, 0, videoWidth, videoHeight);
 
-        // Gambar kotak hijau di sekitar objek yang terdeteksi
         predictions.forEach((prediction) => {
           const [x, y, width, height] = prediction.bbox;
-
-          // Gambarkan kotak hijau di atas video
           ctx.strokeStyle = "green";
           ctx.lineWidth = 2;
           ctx.strokeRect(x, y, width, height);
-
-          // Tampilkan label objek dan skornya
           ctx.font = "18px Arial";
           ctx.fillStyle = "green";
           ctx.fillText(
@@ -90,7 +80,6 @@ const ObjectDetection = () => {
     }
   };
 
-  // Jalankan deteksi objek setiap 100 ms
   useEffect(() => {
     if (backendLoaded) {
       const interval = setInterval(() => {
@@ -103,15 +92,18 @@ const ObjectDetection = () => {
 
   return (
     <>
-      <NavHeader title="Deteksi" />
-      <div style={{ position: "relative" }}>
-        <div style={{ position: "relative" }}>
+      <DashboardTitle title="Deteksi" />
+      <div
+        style={{ position: "relative", maxWidth: "100%", overflow: "hidden" }}
+      >
+        <div style={{ position: "relative", width: "100%" }}>
           <video
             ref={videoRef}
             style={{
               display: "block",
               width: "100%",
-              height: "100vh",
+              height: "auto",
+              borderRadius: "20px",
             }}
           />
           <canvas
@@ -120,8 +112,10 @@ const ObjectDetection = () => {
               position: "absolute",
               top: 0,
               left: 0,
-              height: "100vh",
+              width: "100%",
+              height: "auto",
               pointerEvents: "none",
+              borderRadius: "20px",
             }}
           />
         </div>

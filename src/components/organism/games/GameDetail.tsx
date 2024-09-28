@@ -12,6 +12,7 @@ import { useGetDetailGames } from "@/http/games/get-detail-games";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { Toggle } from "@/components/ui/toggle";
+import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 
 interface GameDetailProps {
   id: number;
@@ -72,10 +73,7 @@ export default function GameDetail({ id }: GameDetailProps) {
 
   return (
     <>
-      <GameTitle
-        title={data?.data.title ?? "Not Found"}
-        type={data?.data.type ?? "Not Found"}
-      />
+      <DashboardTitle title={data?.data.title ?? "Tidak ditemukan"} />
       <div className="md:flex gap-4 w-full">
         <div className="md:w-9/12">
           {questions.length > 0 && (
@@ -115,7 +113,7 @@ export default function GameDetail({ id }: GameDetailProps) {
               <div className="md:mt-6 mt-4 text-center">
                 <h1 className="font-bold">Jumlah Soal</h1>
               </div>
-              <div className="flex grid grid-cols-4 gap-4">
+              <div className="flex grid grid-cols-5 gap-4">
                 {questions.map((_, index) => (
                   <Button
                     key={index}
