@@ -10,7 +10,7 @@ export default function NavButton() {
         <div className="hidden items-center gap-4 md:flex">
           {session ? (
             <Button>
-              <Link href="/dashboard/babies">Dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
             </Button>
           ) : (
             <>
