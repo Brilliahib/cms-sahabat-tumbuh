@@ -26,9 +26,9 @@ export default function NavbarDesktop() {
       active: pathname === "/dashboard/games",
     },
     {
-      href: "/dashboard/article",
+      href: "/article",
       label: "Article",
-      active: pathname === "/dashboard/article",
+      active: pathname === "/article",
     },
   ];
 
