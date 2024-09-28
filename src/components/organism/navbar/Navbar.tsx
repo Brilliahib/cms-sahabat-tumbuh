@@ -26,6 +26,11 @@ export default function NavbarDesktop() {
       active: pathname === "/dashboard/games",
     },
     {
+      href: "/detect",
+      label: "Detection",
+      active: pathname === "/detect",
+    },
+    {
       href: "/article",
       label: "Article",
       active: pathname === "/article",
@@ -34,7 +39,7 @@ export default function NavbarDesktop() {
 
   return (
     <div className="pad-x z-50 sticky top-0 flex md:mb-8 justify-between py-4 bg-white md:flex hidden">
-      <NavL links={links} />
+      <NavL />
       <nav className="hidden items-start font-semibold md:flex">
         {links.map((link) => (
           <NavLink key={link.label} {...link} />
