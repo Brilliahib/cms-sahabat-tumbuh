@@ -17,6 +17,10 @@ body {
   font-family: var(--font-jakartasans);
 }
 
+.font-paytone {
+  font-family: var(--font-paytone-one);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
