@@ -1,26 +1,28 @@
-import { useState } from "react";
-
 import Link from "next/link";
-
-import { Menu } from "lucide-react";
-
-import { Link as Navbar } from "@/components/organism/navbar/Navbar";
 import { Button } from "@/components/ui/button";
-import NavLink from "./NavLink";
+import { useSession } from "next-auth/react";
 
-interface NavLProps {
-  links: Navbar[];
-}
-
-export default function NavButton({ links }: NavLProps) {
-  const [openLoginDialog, setOpenLoginDialog] = useState<boolean>(false);
+export default function NavButton() {
+  const { data: session } = useSession();
   return (
     <>
       <div className="hidden items-center gap-4 md:flex">
-        <Button onClick={() => setOpenLoginDialog(true)}>Masuk</Button>
-        <Button variant={"outline"}>
-          <Link href={"/register"}>Daftar</Link>
-        </Button>
+        <div className="hidden items-center gap-4 md:flex">
+          {session ? (
+            <Button>
+              <Link href="/dashboard/babies">Dashboard</Link>
+            </Button>
+          ) : (
+            <>
+              <Button>
+                <Link href="/login">Masuk</Link>
+              </Button>
+              <Button variant="outline">
+                <Link href="/register">Daftar</Link>
+              </Button>
+            </>
+          )}
+        </div>
       </div>
     </>
   );

@@ -16,19 +16,19 @@ export default function NavbarDesktop() {
   const pathname = usePathname();
   const links = [
     {
-      href: "/tracking",
+      href: "/dashboard/tracking",
       label: "Tracking",
-      active: pathname === "/tracking",
+      active: pathname === "/dashboard/tracking",
     },
     {
-      href: "/games",
+      href: "/dashboard/games",
       label: "Games",
-      active: pathname === "/games",
+      active: pathname === "/dashboard/games",
     },
     {
-      href: "/article",
+      href: "/dashboard/article",
       label: "Article",
-      active: pathname === "/article",
+      active: pathname === "/dashboard/article",
     },
   ];
 
@@ -40,7 +40,7 @@ export default function NavbarDesktop() {
           <NavLink key={link.label} {...link} />
         ))}
       </nav>
-      <NavButton links={links} />
+      <NavButton />
     </div>
   );
 }
