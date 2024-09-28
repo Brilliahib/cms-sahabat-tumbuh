@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-wasm";
+import NavHeader from "@/components/atoms/headers/NavHeader";
 
 const ObjectDetection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -101,29 +102,31 @@ const ObjectDetection = () => {
   }, [model, backendLoaded]);
 
   return (
-    <div style={{ position: "relative" }}>
-      <h1>Object Detection</h1>
+    <>
+      <NavHeader title="Deteksi" />
       <div style={{ position: "relative" }}>
-        <video
-          ref={videoRef}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "100vh",
-          }}
-        />
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            height: "100vh",
-            pointerEvents: "none",
-          }}
-        />
+        <div style={{ position: "relative" }}>
+          <video
+            ref={videoRef}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100vh",
+            }}
+          />
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: "100vh",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

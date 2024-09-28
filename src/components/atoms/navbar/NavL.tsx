@@ -2,14 +2,9 @@ import Image from "next/image";
 
 import { Link as Navbar } from "@/components/organism/navbar/Navbar";
 
-import NavLink from "./NavLink";
 import Link from "next/link";
 
-interface NavLProps {
-  links: Navbar[];
-}
-
-export default function NavL({ links }: NavLProps) {
+export default function NavL() {
   return (
     <>
       <div className="flex items-center gap-4">
