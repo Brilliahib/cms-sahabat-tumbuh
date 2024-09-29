@@ -1,4 +1,4 @@
-import LoginForm from "@/components/organism/auth/LoginForm";
+import RegisterForm from "@/components/organism/auth/RegisterForm";
 import { defineMetadata } from "@/lib/metadata";
 import Image from "next/image";
 
@@ -6,7 +6,7 @@ export const metadata = defineMetadata({
   title: "Login",
 });
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <main className="min-h-screen grid md:grid-cols-2 grid-cols-1 flex items-center justify-center">
       <Image
@@ -16,7 +16,7 @@ export default function LoginPage() {
         height={1381}
         className="h-full object-cover grayscale"
       />
-      <LoginForm />
+      <RegisterForm />
     </main>
   );
 }

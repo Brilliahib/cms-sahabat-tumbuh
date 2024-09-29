@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function HomeDesktop() {
   return (
     <>
-      <div className="md:flex hidden flex items-center min-h-[80vh]">
-        <div className="grid grid-cols-2 gap-8">
+      <div className="flex items-center min-h-[80vh]">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
           <div className="flex items-center">
             <div className="space-y-4">
               <h1 className="text-4xl font-bold">

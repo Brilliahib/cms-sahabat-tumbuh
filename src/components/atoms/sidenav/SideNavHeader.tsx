@@ -46,10 +46,13 @@ export default function SideNavHeader({ session, links }: SideNavHeaderProps) {
 
           <SheetContent side="left" className="flex flex-col">
             <div className="mx-auto my-8">
-              <Link href="/" className="flex items-center  gap-2 font-semibold">
+              <Link
+                href="/"
+                className="flex text-left justify-center items-center gap-2 font-semibold"
+              >
                 <Image
-                  src="/assets/images/logo-susunjadwal.png"
-                  alt="Susun Jadwal"
+                  src="/images/logo_full.png"
+                  alt="Tumbuh Sahabat"
                   width={100}
                   height={100}
                 />
