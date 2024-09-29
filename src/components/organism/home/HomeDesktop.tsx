@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function HomeDesktop() {
   return (
     <>
-      <div className="flex items-center min-h-[80vh]">
+      <div className="flex items-center min-h-[80vh] md:py-0 py-8">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
           <div className="flex items-center">
             <div className="space-y-4">
@@ -32,7 +32,7 @@ export default function HomeDesktop() {
               alt="Bakcground"
               width={2069}
               height={1381}
-              className="w-[400px] h-[400px] object-cover rounded-full"
+              className="w-[400px] md:h-[400px] h-[320px] object-cover rounded-full"
             />
           </div>
         </div>
