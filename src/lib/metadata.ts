@@ -11,7 +11,7 @@ const defaultMetadataValues: Metadata = {
 
 export const defineMetadata = (metadata?: Metadata) => {
   const title = metadata?.title
-    ? `${metadata.title} | SusunJadwal`
+    ? `${metadata.title} | Tumbuh Sahabat`
     : defaultMetadataValues.title;
   return {
     ...defaultMetadataValues,

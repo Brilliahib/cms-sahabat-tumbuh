@@ -5,21 +5,24 @@ import {
   MessageCircleMore,
   TriangleAlert,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function CardTrackingService() {
   return (
     <>
       <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
-        <Card>
-          <CardHeader>
-            <div className="text-primary">
-              <ChartLine className="h-8 w-8" />
-            </div>
-            <div>
-              <h1>Pantau Pertumbuhan</h1>
-            </div>
-          </CardHeader>
-        </Card>
+        <Link href={"/dashboard/tracking/growth"}>
+          <Card>
+            <CardHeader>
+              <div className="text-primary">
+                <ChartLine className="h-8 w-8" />
+              </div>
+              <div>
+                <h1>Pantau Pertumbuhan</h1>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
         <Card>
           <CardHeader>
             <div className="text-primary">

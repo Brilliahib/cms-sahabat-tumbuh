@@ -2,6 +2,7 @@
 
 import { useGetBaby } from "@/http/babies/get-babies";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function TrackingGreetingCard() {
   const { data: session, status } = useSession();
@@ -17,7 +18,14 @@ export default function TrackingGreetingCard() {
   const babies = data?.data?.length ? data.data[0] : null;
 
   if (!babies) {
-    return <div>Data bayi tidak tersedia.</div>;
+    return (
+      <div>
+        Data bayi tidak tersedia, Silahkan tambahkan terlebih dahulu{" "}
+        <Link className="underline text-primary" href={"/dashboard/tracking"}>
+          disini
+        </Link>{" "}
+      </div>
+    );
   }
 
   return (
