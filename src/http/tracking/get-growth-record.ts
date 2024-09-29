@@ -20,7 +20,7 @@ export const getGrowthHandler = async (
   return data;
 };
 
-export const usegetGrowth = (
+export const useGetGrowth = (
   token: string,
   options?: Partial<UseQueryOptions<getGrowthResponse, AxiosError>>
 ) => {

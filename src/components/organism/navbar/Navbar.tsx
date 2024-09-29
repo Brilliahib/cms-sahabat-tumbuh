@@ -38,14 +38,14 @@ export default function NavbarDesktop() {
   ];
 
   return (
-    <div className="pad-x z-50 sticky top-0 flex md:mb-8 justify-between py-4 bg-white flex">
+    <div className="pad-x z-50 sticky top-0 flex md:mb-8 justify-between py-4 bg-white">
       <NavL />
       <nav className="hidden items-start font-semibold md:flex">
         {links.map((link) => (
           <NavLink key={link.label} {...link} />
         ))}
       </nav>
-      <NavButton />
+      <NavButton links={links} />
     </div>
   );
 }

@@ -13,7 +13,7 @@ import {
   Legend,
 } from "chart.js";
 import { useSession } from "next-auth/react";
-import { usegetGrowth } from "@/http/tracking/get-growth-record";
+import { useGetGrowth } from "@/http/tracking/get-growth-record";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { DataTable } from "../datatable/DataTable";
@@ -31,7 +31,7 @@ ChartJS.register(
 
 export default function CardTrackingGrowth() {
   const { data: session, status } = useSession();
-  const { data, isPending } = usegetGrowth(session?.access_token as string, {
+  const { data, isPending } = useGetGrowth(session?.access_token as string, {
     enabled: status === "authenticated",
   });
 
