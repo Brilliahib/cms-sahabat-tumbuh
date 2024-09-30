@@ -9,10 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton dari shadcn/ui
+import { Skeleton } from "@/components/ui/skeleton";
 import { useGetArticle } from "@/http/article/get-all-article";
 import { baseUrl } from "@/utils/app";
-import { stripHtmlTags } from "@/utils/strip-html";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { Clock } from "lucide-react";
