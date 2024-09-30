@@ -11,7 +11,7 @@ interface GetArticleResponse {
 export const getArticleHandler = async (
   token: string
 ): Promise<GetArticleResponse> => {
-  const { data } = await api.get<GetArticleResponse>("/articles", {
+  const { data } = await api.get<GetArticleResponse>("/article", {
     headers: {
       Authorization: `Bearer ${token}`,
     },

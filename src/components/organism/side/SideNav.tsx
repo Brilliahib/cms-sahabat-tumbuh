@@ -15,6 +15,9 @@ import {
   ChartSpline,
   Gamepad2,
   Camera,
+  Newspaper,
+  FileType2,
+  Gamepad,
 } from "lucide-react";
 import { Session } from "next-auth";
 import SideNavL from "@/components/atoms/sidenav/SideNavL";
@@ -46,16 +49,34 @@ export default function Sidenav({ children, session }: SidenavProps) {
               active: pathname === "/dashboard/admin",
             },
             {
+              href: "/dashboard/admin/article",
+              label: "Artikel",
+              icon: Newspaper,
+              active: pathname === "/dashboard/admin/article",
+            },
+            {
+              href: "/dashboard/admin/article/types",
+              label: "Tipe Artikel",
+              icon: FileType2,
+              active: pathname.startsWith("/dashboard/admin/article/types"),
+            },
+            {
+              href: "/dashboard/admin/games",
+              label: "Games",
+              icon: Gamepad2,
+              active: pathname === "/dashboard/admin/games",
+            },
+            {
+              href: "/dashboard/admin/games/types",
+              label: "Tipe Games",
+              icon: Gamepad,
+              active: pathname.startsWith("/dashboard/admin/games/types"),
+            },
+            {
               href: "/dashboard/admin/users",
               label: "Pengguna",
               icon: User,
               active: pathname.startsWith("/dashboard/admin/users"),
-            },
-            {
-              href: "/dashboard/admin/period",
-              label: "Periode",
-              icon: TimerReset,
-              active: pathname.startsWith("/dashboard/admin/period"),
             },
           ]
         : [
@@ -89,12 +110,6 @@ export default function Sidenav({ children, session }: SidenavProps) {
         label: "Pengaturan",
         active: pathname.startsWith("/dashboard/settings"),
         icon: Settings2Icon,
-      },
-      {
-        href: "#",
-        label: "Bantuan",
-        active: pathname.startsWith("/dashboard/bantuan"),
-        icon: CircleHelpIcon,
       },
     ],
     [session, pathname]
