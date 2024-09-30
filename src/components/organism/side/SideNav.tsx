@@ -99,6 +99,12 @@ export default function Sidenav({ children, session }: SidenavProps) {
               active: pathname.startsWith("/dashboard/games"),
             },
             {
+              href: "/dashboard/articles",
+              label: "Artikel",
+              icon: Newspaper,
+              active: pathname.startsWith("/dashboard/articles"),
+            },
+            {
               href: "/dashboard/detect",
               label: "Deteksi",
               icon: Camera,

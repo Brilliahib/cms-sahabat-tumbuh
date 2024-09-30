@@ -24,9 +24,9 @@ export default function ArticleList() {
   });
   return (
     <>
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-8 my-6">
         {data?.data.map((article) => (
-          <Link key={article.id} href={`/article/${article.id}`}>
+          <Link key={article.id} href={`/dashboard/articles/${article.id}`}>
             <Card className="border-0 shadow-none p-0">
               <CardHeader className="p-0">
                 <Image
