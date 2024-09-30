@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton dari shadcn/ui
+import { Skeleton } from "@/components/ui/skeleton";
 import { useGetArticle } from "@/http/article/get-all-article";
 import { baseUrl } from "@/utils/app";
 import { format } from "date-fns";
@@ -75,7 +75,10 @@ export default function ArticleList() {
                       {article.title}
                     </CardTitle>
                     <CardDescription className="line-clamp-2">
-                      {article.content}
+                      <div
+                        dangerouslySetInnerHTML={{ __html: article.content }}
+                        className="prose"
+                      />
                     </CardDescription>
                     <CardFooter className="p-0 text-muted-foreground text-sm">
                       <div className="flex items-center gap-2">

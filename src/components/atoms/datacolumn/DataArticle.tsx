@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Eye, SquarePen } from "lucide-react";
+import { stripHtmlTags } from "@/utils/strip-html";
 
 export const articleColumns: ColumnDef<Article>[] = [
   {
@@ -37,13 +38,16 @@ export const articleColumns: ColumnDef<Article>[] = [
   },
   {
     accessorKey: "content",
-    header: "Kontent",
+    header: "Konten",
     cell: ({ row }) => {
       const data = row.original;
       return (
-        <p suppressHydrationWarning className="line-clamp-2">
-          {data.content}
-        </p>
+        <div suppressHydrationWarning className="line-clamp-2">
+          <div
+            dangerouslySetInnerHTML={{ __html: data.content }}
+            className="prose"
+          />
+        </div>
       );
     },
   },
@@ -89,7 +93,7 @@ export const articleColumns: ColumnDef<Article>[] = [
           <DropdownMenuItem>
             <Link
               href={`/dashboard/admin/article/${data.id}/edit`}
-              className="flex items-center text-gray-700  "
+              className="flex items-center text-gray-700"
             >
               <SquarePen className="h-4 w-4" />
               <span className="ml-2">Edit Artikel</span>
@@ -98,7 +102,7 @@ export const articleColumns: ColumnDef<Article>[] = [
           <DropdownMenuItem>
             <Link
               href={`/dashboard/admin/article/${data.id}`}
-              className="flex items-center text-gray-700 "
+              className="flex items-center text-gray-700"
             >
               <Eye className="h-4 w-4" />
               <span className="ml-2">Detail Artikel</span>
