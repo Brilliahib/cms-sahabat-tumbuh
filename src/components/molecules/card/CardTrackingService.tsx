@@ -23,16 +23,18 @@ export default function CardTrackingService() {
             </CardHeader>
           </Card>
         </Link>
-        <Card>
-          <CardHeader>
-            <div className="text-primary">
-              <ChartColumnBig className="h-8 w-8" />
-            </div>
-            <div>
-              <h1>Pantau Perkembangan</h1>
-            </div>
-          </CardHeader>
-        </Card>
+        <Link href={"/dashboard/tracking/development"}>
+          <Card>
+            <CardHeader>
+              <div className="text-primary">
+                <ChartColumnBig className="h-8 w-8" />
+              </div>
+              <div>
+                <h1>Pantau Perkembangan</h1>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
         <Card>
           <CardHeader>
             <div className="text-primary">
@@ -43,16 +45,18 @@ export default function CardTrackingService() {
             </div>
           </CardHeader>
         </Card>
-        <Card>
-          <CardHeader>
-            <div className="text-primary">
-              <TriangleAlert className="h-8 w-8" />
-            </div>
-            <div>
-              <h1>Kenali Gejala</h1>
-            </div>
-          </CardHeader>
-        </Card>
+        <Link href={"/dashboard/tracking/indication"}>
+          <Card>
+            <CardHeader>
+              <div className="text-primary">
+                <TriangleAlert className="h-8 w-8" />
+              </div>
+              <div>
+                <h1>Kenali Gejala</h1>
+              </div>
+            </CardHeader>
+          </Card>
+        </Link>
       </div>
     </>
   );
