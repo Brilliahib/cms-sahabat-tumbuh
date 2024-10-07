@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { ShieldCheck } from "lucide-react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function CardTrackingDevelopment() {
   const { data: session, status } = useSession();
@@ -23,7 +24,11 @@ export default function CardTrackingDevelopment() {
   return (
     <>
       {data?.data.map((development) => (
-        <div key={development.id} className="group block">
+        <Link
+          href={`/dashboard/tracking/development/${development.id}`}
+          key={development.id}
+          className="group block"
+        >
           <Card className="w-full border-2 border-muted shadow-transparent group-hover:bg-muted cursor-pointer">
             <CardHeader className="flex md:flex-row md:items-center md:justify-between p-4">
               <div className="flex gap-4">
@@ -47,7 +52,7 @@ export default function CardTrackingDevelopment() {
               </div>
             </CardHeader>
           </Card>
-        </div>
+        </Link>
       ))}
     </>
   );
