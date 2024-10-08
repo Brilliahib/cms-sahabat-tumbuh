@@ -1,6 +1,5 @@
 "use client";
 
-import GameTitle from "@/components/atoms/typography/GameTitle";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,6 +12,11 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { Toggle } from "@/components/ui/toggle";
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
+import { useSubmitGames } from "@/http/games/submit-games";
+import { AxiosError } from "axios";
+import { useToast } from "@/hooks/use-toast";
+import { Check } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface GameDetailProps {
   id: number;
@@ -20,6 +24,8 @@ interface GameDetailProps {
 
 export default function GameDetail({ id }: GameDetailProps) {
   const session = useSession();
+  const { toast } = useToast();
+  const router = useRouter();
   const { data, isPending } = useGetDetailGames(
     {
       token: session.data?.access_token as string,
@@ -29,7 +35,26 @@ export default function GameDetail({ id }: GameDetailProps) {
   );
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedChoices, setSelectedChoices] = useState<number[][]>([]);
+  const [selectedChoices, setSelectedChoices] = useState<Map<number, number>>(
+    new Map()
+  );
+
+  const { mutate: submitGame, isPending: isSubmitting } = useSubmitGames({
+    onError: (error: AxiosError<any>) => {
+      toast({
+        title: "Gagal mengirimkan game!",
+        description: error.response?.data.message || "Terjadi kesalahan",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Game berhasil disubmit!",
+        variant: "success",
+      });
+      router.push("/dashboard/games");
+    },
+  });
 
   if (isPending) {
     return <p>Loading...</p>;
@@ -49,26 +74,24 @@ export default function GameDetail({ id }: GameDetailProps) {
     }
   };
 
-  const handleToggle = (choiceIndex: number) => {
+  const handleToggle = (choiceId: number) => {
     setSelectedChoices((prev) => {
-      const currentSelections = prev[currentQuestionIndex] || [];
-      if (currentSelections.includes(choiceIndex)) {
-        return prev.map((selections, index) =>
-          index === currentQuestionIndex
-            ? selections.filter((index) => index !== choiceIndex)
-            : selections
-        );
-      }
-      return prev.map((selections, index) =>
-        index === currentQuestionIndex
-          ? [...selections, choiceIndex]
-          : selections
-      );
+      const newSelections = new Map(prev);
+      newSelections.set(currentQuestionIndex, choiceId);
+      return newSelections;
     });
   };
 
   const goToQuestion = (index: number) => {
     setCurrentQuestionIndex(index);
+  };
+
+  const handleSubmitGame = () => {
+    const answers = questions.map((question, index) => ({
+      question_id: question.question_id,
+      choice_id: selectedChoices.get(index) ?? -1,
+    }));
+    submitGame({ gameId: id, answers });
   };
 
   return (
@@ -90,10 +113,11 @@ export default function GameDetail({ id }: GameDetailProps) {
                       (choice, choiceIndex) => (
                         <li key={choiceIndex}>
                           <Toggle
-                            pressed={selectedChoices[
-                              currentQuestionIndex
-                            ]?.includes(choiceIndex)}
-                            onClick={() => handleToggle(choiceIndex)}
+                            pressed={
+                              selectedChoices.get(currentQuestionIndex) ===
+                              choice.choice_id
+                            }
+                            onClick={() => handleToggle(choice.choice_id)}
                             className="p-2 rounded-md text-black justify-start pl-4 md:text-base text-sm"
                           >
                             {choice.choice_text}
@@ -128,9 +152,30 @@ export default function GameDetail({ id }: GameDetailProps) {
                   </Button>
                 ))}
               </div>
+              <div className="mt-4">
+                <Button
+                  onClick={handleSubmitGame}
+                  className="w-full gap-2 shadow-md"
+                  disabled={isSubmitting}
+                >
+                  <Check className="h-4 w-4" /> Selesai
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>
+      </div>
+
+      <div className="flex justify-between mt-4">
+        <Button onClick={handlePrev} disabled={currentQuestionIndex === 0}>
+          Previous
+        </Button>
+        <Button
+          onClick={handleNext}
+          disabled={currentQuestionIndex === questions.length - 1}
+        >
+          Next
+        </Button>
       </div>
     </>
   );

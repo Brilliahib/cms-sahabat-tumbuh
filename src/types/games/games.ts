@@ -13,11 +13,13 @@ export interface DetailGames {
 }
 
 export interface QuestionGames {
+  question_id: number;
   question_text: string;
   choices: ChoicesGames[];
 }
 
 export interface ChoicesGames {
+  choice_id: number;
   choice_text: string;
   is_correct: Boolean;
 }
