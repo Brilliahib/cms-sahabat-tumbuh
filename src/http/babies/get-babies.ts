@@ -5,7 +5,7 @@ import { api } from "@/lib/axios";
 import { Babies } from "@/types/babies/babies";
 
 interface GetBabyResponse {
-  data: Babies[];
+  data: Babies;
 }
 
 export const getBabyHandler = async (
