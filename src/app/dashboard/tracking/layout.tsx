@@ -12,13 +12,11 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     enabled: status === "authenticated",
   });
 
-  const babies = data?.data?.length ? data.data[0] : null;
-
   if (isPending) {
     return <div>loading..</div>;
   }
 
-  if (!babies) {
+  if (!data) {
     return <AddBabyForm />;
   }
 
