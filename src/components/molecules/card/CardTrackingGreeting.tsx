@@ -15,9 +15,7 @@ export default function TrackingGreetingCard() {
     return <div>Loading...</div>;
   }
 
-  const babies = data?.data?.length ? data.data[0] : null;
-
-  if (!babies) {
+  if (!data) {
     return (
       <div>
         Data bayi tidak tersedia, Silahkan tambahkan terlebih dahulu{" "}
@@ -37,10 +35,10 @@ export default function TrackingGreetingCard() {
         <div className="w-36 h-36 bg-white/20 rounded-full" />
       </div>
       <div className="flex flex-col space-y-2">
-        <h1 className="font-bold md:text-lg">{babies.name}</h1>
+        <h1 className="font-bold md:text-lg">{data?.data.name}</h1>
         <p>Umur: 12 Tahun</p>
-        <p>Berat badan: {babies.weight}</p>
-        <p>Tinggi badan: {babies.height} cm</p>
+        <p>Berat badan: {data?.data.weight}</p>
+        <p>Tinggi badan: {data?.data.height} cm</p>
       </div>
     </div>
   );
