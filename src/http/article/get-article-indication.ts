@@ -12,7 +12,7 @@ export const GetAllArticleIndicationHandler = async (
   token: string
 ): Promise<GetAllArticleIndicationResponse> => {
   const { data } = await api.get<GetAllArticleIndicationResponse>(
-    "/articles/2",
+    "/articles/type/2",
     {
       headers: {
         Authorization: `Bearer ${token}`,

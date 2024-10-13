@@ -24,16 +24,7 @@ export const addGameHandler = async (
   formData.append("type_id", body.type_id.toString());
   formData.append("title", body.title);
 
-  // Validasi untuk memastikan ada pertanyaan dan setiap pertanyaan memiliki pilihan
-  if (!body.questions || body.questions.length === 0) {
-    throw new Error("At least one question is required.");
-  }
-
   body.questions.forEach((question, index) => {
-    if (!question.question_text) {
-      throw new Error(`Question ${index + 1} is missing text.`);
-    }
-
     formData.append(
       `questions[${index}].question_text`,
       question.question_text
@@ -43,17 +34,7 @@ export const addGameHandler = async (
       formData.append(`questions[${index}].image`, question.image);
     }
 
-    if (!question.choices || question.choices.length === 0) {
-      throw new Error(`Question ${index + 1} must have at least one choice.`);
-    }
-
     question.choices.forEach((choice, choiceIndex) => {
-      if (!choice.choice_text) {
-        throw new Error(
-          `Choice ${choiceIndex + 1} for question ${index + 1} is missing text.`
-        );
-      }
-
       formData.append(
         `questions[${index}].choices[${choiceIndex}].choice_text`,
         choice.choice_text
@@ -77,7 +58,6 @@ export const addGameHandler = async (
   const { data } = await api.post("/games", formData, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
     },
   });
 
