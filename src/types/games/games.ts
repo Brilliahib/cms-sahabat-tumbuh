@@ -8,18 +8,27 @@ export interface Games {
 
 export interface DetailGames {
   title: string;
-  type: string;
+  type: number;
   questions: QuestionGames[];
 }
 
 export interface QuestionGames {
   question_id: number;
   question_text: string;
+  image?: File;
   choices: ChoicesGames[];
 }
 
 export interface ChoicesGames {
   choice_id: number;
   choice_text: string;
+  image?: File;
   is_correct: Boolean;
+}
+
+export interface GamesType {
+  id: number;
+  name: string;
+  created_at: Date;
+  updated_at: Date;
 }

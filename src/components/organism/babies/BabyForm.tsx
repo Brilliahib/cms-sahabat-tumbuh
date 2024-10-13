@@ -177,7 +177,7 @@ export default function AddBabyForm() {
                   )}
                 />
                 <div className="flex justify-end">
-                  <Button type="submit" size="lg" disabled={isPending}>
+                  <Button type="submit" disabled={isPending}>
                     {isPending ? "Loading..." : "Tambahkan"}
                   </Button>
                 </div>

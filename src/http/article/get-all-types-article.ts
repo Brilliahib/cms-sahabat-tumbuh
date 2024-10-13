@@ -11,7 +11,7 @@ interface GetAllTypesArticleResponse {
 export const getAllTypesArticleHandler = async (
   token: string
 ): Promise<GetAllTypesArticleResponse> => {
-  const { data } = await api.get<GetAllTypesArticleResponse>("/aricle-types", {
+  const { data } = await api.get<GetAllTypesArticleResponse>("/article-types", {
     headers: {
       Authorization: `Bearer ${token}`,
     },

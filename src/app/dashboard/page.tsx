@@ -1,7 +1,7 @@
 "use client";
 
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
-import TrackingGreetingCard from "@/components/molecules/card/CardTrackingGreeting";
+import DashboardWrapper from "@/components/organism/dashboard/DashboardWrapper";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +21,7 @@ export default function DashboardPage() {
   return (
     <>
       <DashboardTitle title="Dashboard" />
-      <TrackingGreetingCard />
+      <DashboardWrapper />
     </>
   );
 }
