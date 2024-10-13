@@ -11,9 +11,13 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Eye, SquarePen } from "lucide-react";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 
-export const gameColumns: ColumnDef<Games>[] = [
+interface GamesRowProps extends Games {
+  deleteGamesHandler: (data: Games) => void;
+}
+
+export const gameColumns: ColumnDef<GamesRowProps>[] = [
   {
     accessorKey: "index",
     header: "No",
@@ -58,7 +62,7 @@ export const gameColumns: ColumnDef<Games>[] = [
               className="flex items-center text-gray-700  "
             >
               <SquarePen className="h-4 w-4" />
-              <span className="ml-2">Edit Games</span>
+              <span className="ml-2">Edit</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
@@ -67,8 +71,15 @@ export const gameColumns: ColumnDef<Games>[] = [
               className="flex items-center text-gray-700 "
             >
               <Eye className="h-4 w-4" />
-              <span className="ml-2">Detail Games</span>
+              <span className="ml-2">Detail</span>
             </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => data.deleteGamesHandler(data)}
+            className="cursor-pointer text-red-500 focus:text-red-700"
+          >
+            <Trash2 className="h-4 w-4" />
+            <span className="ml-2">Hapus</span>
           </DropdownMenuItem>
         </ActionButton>
       );
