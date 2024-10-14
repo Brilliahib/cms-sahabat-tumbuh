@@ -108,10 +108,10 @@ export default function CardGrowthExample() {
   return (
     <>
       <div className="md:space-y-8 space-y-6">
-        <Card className="shadow-md">
+        <Card className="shadow-lg border-0 rounded-xl">
           <CardContent className="p-6">
             <div className="mb-4">
-              <h1 className="font-bold text-md">Grafik Pertumbuhan</h1>
+              <h1 className="font-bold text-lg">Grafik Pertumbuhan</h1>
             </div>
             <Line data={chartData} options={options} />
           </CardContent>
