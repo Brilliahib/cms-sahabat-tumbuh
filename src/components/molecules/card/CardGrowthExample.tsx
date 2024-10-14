@@ -108,7 +108,7 @@ export default function CardGrowthExample() {
   return (
     <>
       <div className="md:space-y-8 space-y-6">
-        <Card className="shadow-lg border-0 rounded-xl">
+        <Card className="shadow-lg border-0 rounded-xl h-full">
           <CardContent className="p-6">
             <div className="mb-4">
               <h1 className="font-bold text-lg">Grafik Pertumbuhan</h1>
