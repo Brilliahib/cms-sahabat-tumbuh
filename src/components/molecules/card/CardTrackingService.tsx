@@ -10,9 +10,9 @@ import Link from "next/link";
 export default function CardTrackingService() {
   return (
     <>
-      <div className="grid md:grid-cols-4 grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-4">
         <Link href={"/dashboard/tracking/growth"}>
-          <Card>
+          <Card className="shadow-md">
             <CardContent className="p-6">
               <div className="text-primary">
                 <ChartLine className="h-8 w-8" />
@@ -24,7 +24,7 @@ export default function CardTrackingService() {
           </Card>
         </Link>
         <Link href={"/dashboard/tracking/development"}>
-          <Card>
+          <Card className="shadow-md">
             <CardContent className="p-6">
               <div className="text-primary">
                 <ChartColumnBig className="h-8 w-8" />
@@ -35,18 +35,8 @@ export default function CardTrackingService() {
             </CardContent>
           </Card>
         </Link>
-        <Card>
-          <CardContent className="p-6">
-            <div className="text-primary">
-              <MessageCircleMore className="h-8 w-8" />
-            </div>
-            <div>
-              <h1>Tanyakan Ahli</h1>
-            </div>
-          </CardContent>
-        </Card>
         <Link href={"/dashboard/tracking/indication"}>
-          <Card>
+          <Card className="shadow-md">
             <CardContent className="p-6">
               <div className="text-primary">
                 <TriangleAlert className="h-8 w-8" />

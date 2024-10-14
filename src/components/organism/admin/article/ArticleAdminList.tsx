@@ -21,7 +21,7 @@ export default function ArticleAdminList() {
   };
   return (
     <>
-      <div className="py-8 space-y-6">
+      <div className="py-8 space-y-8">
         <div>
           <Button onClick={handleGrowthDialogOpen}>Tambah Artikel</Button>
         </div>

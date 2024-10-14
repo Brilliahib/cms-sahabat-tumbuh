@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-import { Games } from "@/types/games/games";
 import ActionButton from "@/components/molecules/datatable/ActionButton";
 import {
   DropdownMenuItem,
@@ -12,12 +11,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Eye, SquarePen, Trash2 } from "lucide-react";
+import { GamesType } from "@/types/games/games";
 
-interface GamesRowProps extends Games {
-  deleteGamesHandler: (data: Games) => void;
+interface TypesGamesRowProps extends GamesType {
+  deleteTypesGamesHandler: (data: GamesType) => void;
 }
 
-export const gameColumns: ColumnDef<GamesRowProps>[] = [
+export const typesGameTypeColumns: ColumnDef<TypesGamesRowProps>[] = [
   {
     accessorKey: "index",
     header: "No",
@@ -26,16 +26,26 @@ export const gameColumns: ColumnDef<GamesRowProps>[] = [
     },
   },
   {
-    accessorKey: "title",
-    header: "Judul",
-  },
-  {
-    accessorKey: "type_id",
-    header: "Tipe Id",
+    accessorKey: "name",
+    header: "Nama",
   },
   {
     accessorKey: "created_at",
-    header: "Tanggal",
+    header: "Tanggal Posting",
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <p suppressHydrationWarning>
+          {format(new Date(data.created_at), "EEEE, d MMMM yyyy", {
+            locale: id,
+          })}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "created_at",
+    header: "Tanggal Update",
     cell: ({ row }) => {
       const data = row.original;
       return (
@@ -58,7 +68,7 @@ export const gameColumns: ColumnDef<GamesRowProps>[] = [
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link
-              href={`/dashboard/admin/games/${data.id}/edit`}
+              href={`/dashboard/admin/games/types/${data.id}/edit`}
               className="flex items-center text-gray-700  "
             >
               <SquarePen className="h-4 w-4" />
@@ -67,7 +77,7 @@ export const gameColumns: ColumnDef<GamesRowProps>[] = [
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link
-              href={`/dashboard/admin/games/${data.id}`}
+              href={`/dashboard/admin/games/types/${data.id}`}
               className="flex items-center text-gray-700 "
             >
               <Eye className="h-4 w-4" />
@@ -75,7 +85,7 @@ export const gameColumns: ColumnDef<GamesRowProps>[] = [
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => data.deleteGamesHandler(data)}
+            onClick={() => data.deleteTypesGamesHandler(data)}
             className="cursor-pointer text-red-500 focus:text-red-700"
           >
             <Trash2 className="h-4 w-4" />

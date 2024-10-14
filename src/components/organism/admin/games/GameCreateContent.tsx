@@ -29,6 +29,10 @@ import { gameSchema, GameType } from "@/validators/games/games-validator";
 import { useAddGame } from "@/http/games/add-games";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import Image from "next/image";
+import { Trash2, UploadIcon } from "lucide-react";
 
 export default function GameCreateContent() {
   const form = useForm<GameType>({
@@ -39,6 +43,7 @@ export default function GameCreateContent() {
       questions: [
         {
           question_text: "",
+          image: null,
           choices: [
             { choice_text: "", is_correct: false },
             { choice_text: "", is_correct: false },
@@ -54,6 +59,13 @@ export default function GameCreateContent() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const router = useRouter();
+  const [imagePreview, setImagePreview] = useState<
+    Record<number, string | null>
+  >({});
+  const isValidImage = (file: File): boolean => {
+    const validImageTypes = ["image/jpeg", "image/png"];
+    return validImageTypes.includes(file.type);
+  };
 
   const { mutate: addGameHandler, isPending } = useAddGame({
     onError: (error: AxiosError<any>) => {
@@ -79,6 +91,41 @@ export default function GameCreateContent() {
     control: form.control,
     name: "questions",
   });
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const file = acceptedFiles[0];
+      if (isValidImage(file)) {
+        const lastQuestionIndex = questionFields.length - 1;
+        form.setValue(`questions.${lastQuestionIndex}.image`, file);
+        setImagePreview((prev) => ({
+          ...prev,
+          [lastQuestionIndex]: URL.createObjectURL(file),
+        }));
+      } else {
+        toast({
+          title: "Invalid file type!",
+          description: "Please upload a valid image (JPEG or PNG).",
+          variant: "destructive",
+        });
+      }
+    },
+    [form, questionFields.length, toast]
+  );
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "image/*": [] },
+    multiple: false,
+  });
+
+  const removeImage = (index: number) => {
+    setImagePreview((prev) => ({
+      ...prev,
+      [index]: null,
+    }));
+    form.setValue(`questions.${index}.image`, null);
+  };
 
   const onSubmit = (body: GameType) => {
     addGameHandler(body);
@@ -153,6 +200,60 @@ export default function GameCreateContent() {
                             placeholder={`Masukkan pertanyaan`}
                             {...field}
                           />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name={`questions.${questionIndex}.image`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gambar</FormLabel>
+                        <FormControl>
+                          <div>
+                            <div
+                              {...getRootProps()}
+                              className={`border rounded-md border-input flex justify-center items-center cursor-pointer ${
+                                isDragActive
+                                  ? "border-gray-300"
+                                  : "border-gray-300"
+                              }`}
+                            >
+                              <Input {...getInputProps()} />
+                              {imagePreview[questionIndex] ? (
+                                <div className="relative w-full">
+                                  <Image
+                                    src={imagePreview[questionIndex]!}
+                                    alt="Preview"
+                                    className="max-h-[200px] w-full object-cover rounded-lg"
+                                    width={1000}
+                                    height={1000}
+                                  />
+                                  <Button
+                                    className="absolute top-2 right-2 shadow-lg px-3"
+                                    variant="destructive"
+                                    onClick={() => removeImage(questionIndex)}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </div>
+                              ) : isDragActive ? (
+                                <p className="text-blue-500">
+                                  Drop gambar di sini ...
+                                </p>
+                              ) : (
+                                <div className="text-center space-y-4 py-4">
+                                  <UploadIcon className="mx-auto h-6 w-6 text-muted-foreground" />
+                                  <p className="text-muted-foreground text-sm">
+                                    Drag & drop gambar ke sini, atau klik untuk
+                                    memilih
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>

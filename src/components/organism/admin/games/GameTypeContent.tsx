@@ -1,38 +1,41 @@
 "use client";
 
-import DeleteGameDialog from "@/components/atoms/alert/AlertDeleteGame";
-import { gameColumns } from "@/components/atoms/datacolumn/DataGameList";
+import DeleteGamesTypeDialog from "@/components/atoms/alert/AlertDeleteGameTypes";
+import { typesGameTypeColumns } from "@/components/atoms/datacolumn/DataTypesGame";
+import DialogCreateTypeGames from "@/components/atoms/dialog/DialogCreateTypeGame";
 import { DataTable } from "@/components/molecules/datatable/DataTable";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useDeleteGames } from "@/http/games/delete-games";
-import { useGetGames } from "@/http/games/get-all-games";
-import { Games } from "@/types/games/games";
+import { useDeleteGamesType } from "@/http/games/delete-games-type";
+import { useGetAllTypesGame } from "@/http/games/get-all-types-games";
+import { GamesType } from "@/types/games/games";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { useState } from "react";
 
-export default function GameAdminList() {
+export default function GameTypeContent() {
   const { data: session, status } = useSession();
-  const [selectedGamesType, setSelectedGamesType] = useState<Games | null>(
+  const [selectedGamesType, setSelectedGamesType] = useState<GamesType | null>(
     null
   );
   const [openAlertDelete, setOpenAlertDelete] = useState<boolean>(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data, isPending } = useGetGames(session?.access_token as string, {
-    enabled: status === "authenticated",
-  });
+  const { data, isPending } = useGetAllTypesGame(
+    session?.access_token as string,
+    {
+      enabled: status === "authenticated",
+    }
+  );
 
   const { mutate: deleteQuestionBank, isPending: isDeletePending } =
-    useDeleteGames({
+    useDeleteGamesType({
       onSuccess: () => {
         setSelectedGamesType(null);
         toast({ title: "Berhasil menghapus tipe games!", variant: "success" });
         queryClient.invalidateQueries({
-          queryKey: ["games-list"],
+          queryKey: ["type-games"],
         });
       },
       onError: (error) => {
@@ -44,12 +47,19 @@ export default function GameAdminList() {
       },
     });
 
-  const deleteGamesHandler = (data: Games) => {
+  const [dialogCreateTypeGameOpen, setDialogCreateTypeGameOpen] =
+    useState(false);
+
+  const handleDialogTypeGameOpen = () => {
+    setDialogCreateTypeGameOpen(true);
+  };
+
+  const deleteGamesTypeHandler = (data: GamesType) => {
     setSelectedGamesType(data);
     setOpenAlertDelete(true);
   };
 
-  const handleDeleteGame = () => {
+  const handleDeleteGameTypes = () => {
     if (selectedGamesType?.id) {
       deleteQuestionBank({
         id: selectedGamesType.id,
@@ -57,26 +67,29 @@ export default function GameAdminList() {
       });
     }
   };
+
   return (
     <>
       <div className="py-8 space-y-8">
-        <Link href={"/dashboard/admin/games/create"}>
-          <Button>Tambah Games</Button>
-        </Link>
+        <Button onClick={handleDialogTypeGameOpen}>Tambah Tipe</Button>
         <DataTable
-          columns={gameColumns}
+          columns={typesGameTypeColumns}
           data={
             data?.data.map((site) => ({
               ...site,
-              deleteGamesHandler: deleteGamesHandler,
+              deleteTypesGamesHandler: deleteGamesTypeHandler,
             })) ?? []
           }
         />
       </div>
-      <DeleteGameDialog
+      <DialogCreateTypeGames
+        open={dialogCreateTypeGameOpen}
+        setOpen={setDialogCreateTypeGameOpen}
+      />
+      <DeleteGamesTypeDialog
         open={openAlertDelete}
         setOpen={setOpenAlertDelete}
-        confirmDelete={handleDeleteGame}
+        confirmDelete={handleDeleteGameTypes}
         data={selectedGamesType}
         isPending={isDeletePending}
       />

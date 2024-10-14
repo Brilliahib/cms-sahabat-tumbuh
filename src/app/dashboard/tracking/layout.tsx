@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     return <div>loading..</div>;
   }
 
-  if (!data) {
+  if (!data || data?.data === null) {
     return <AddBabyForm />;
   }
 
