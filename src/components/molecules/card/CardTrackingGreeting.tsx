@@ -31,11 +31,8 @@ export default function TrackingGreetingCard() {
   }
 
   return (
-    <Card className="shadow-md">
+    <Card className="shadow-lg border-0 rounded-xl">
       <CardContent className="p-6">
-        <div className="mb-4">
-          <h1 className="font-bold text-md">Detail Anak</h1>
-        </div>
         <div className="space-y-8">
           <div className="flex gap-8">
             <div className="bg-primary w-fit h-fit rounded-full">
@@ -56,24 +53,14 @@ export default function TrackingGreetingCard() {
                 <span className="text-muted-foreground">Gender</span>
                 <h1 className="font-bold">{data?.data.gender}</h1>
               </div>
-            </div>
-          </div>
-          <div className="flex gap-8">
-            <div>
-              <span className="text-muted-foreground">Tinggi Badan</span>
-              <h1 className="font-bold">{data?.data.height} Cm</h1>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Berat Badan</span>
-              <h1 className="font-bold">{data?.data.weight} Kg</h1>
-            </div>
-            <div>
-              <span className="text-muted-foreground">Tanggal Lahir</span>
-              <h1 className="font-bold">
-                {format(new Date(data?.data.birth_date), "d MMMM yyyy", {
-                  locale: id,
-                })}
-              </h1>
+              <div>
+                <span className="text-muted-foreground">Tanggal Lahir</span>
+                <h1 className="font-bold">
+                  {format(new Date(data?.data.birth_date), "d MMMM yyyy", {
+                    locale: id,
+                  })}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
