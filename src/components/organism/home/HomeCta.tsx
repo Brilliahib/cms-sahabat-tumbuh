@@ -8,13 +8,15 @@ export default function HomeCta() {
           <h1 className="font-bold text-3xl">
             Tunggu Apalagi? Cobain Sekarang!
           </h1>
-          <p className="max-w-xl">
+          <p className="max-w-xl md:text-base text-sm">
             Kami percaya bahwa setiap anak berhak mendapatkan kesempatan yang
             sama untuk belajar, bermain, dan berkembang dengan cinta dan
             dukungan penuh. Bergabunglah dengan Sahabat Tumbuh untuk pengalaman
             yang penuh inspirasi dan kebahagiaan.
           </p>
-          <Button variant={"secondary"}>Coba Sekarang</Button>
+          <Button variant={"secondary"} className="text-primary">
+            Coba Sekarang
+          </Button>
         </div>
         <span className="absolute left-0 top-0">
           <svg

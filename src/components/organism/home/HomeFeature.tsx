@@ -10,7 +10,7 @@ export default function HomeFeature() {
             <h1 className="text-3xl font-bold text-primary">
               Membantu Anak Anda
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground md:text-base text-sm">
               Tumbuh sahabat menyediakan berbagai fitur untuk memantau
               pertumbuhan melalui sebuah grafik dan permainan interaktif guna
               perkembangan anak.
