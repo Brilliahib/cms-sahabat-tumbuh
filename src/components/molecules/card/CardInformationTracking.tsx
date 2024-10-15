@@ -66,7 +66,7 @@ export default function CardInformationTracking() {
           <div className="space-y-4">
             <div className="space-y-1">
               <span className="text-muted-foreground">Berat Badan</span>
-              <h1 className="font-bold">{data?.data.weight} Kg</h1>
+              <h1 className="font-bold text-xl">{data?.data.weight} Kg</h1>
             </div>
             <div className="space-y-1">
               <span className="text-muted-foreground">Tinggi Badan</span>
