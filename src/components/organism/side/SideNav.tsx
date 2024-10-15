@@ -19,6 +19,7 @@ import {
   FileType2,
   Gamepad,
   Video,
+  BookOpen,
 } from "lucide-react";
 import { Session } from "next-auth";
 import SideNavL from "@/components/atoms/sidenav/SideNavL";
@@ -98,6 +99,12 @@ export default function Sidenav({ children, session }: SidenavProps) {
               label: "Permainan",
               icon: Gamepad2,
               active: pathname.startsWith("/dashboard/games"),
+            },
+            {
+              href: "/dashboard/studies/speaks",
+              label: "Belajar",
+              icon: BookOpen,
+              active: pathname.startsWith("/dashboard/studies/speaks"),
             },
             {
               href: "/dashboard/videos",
