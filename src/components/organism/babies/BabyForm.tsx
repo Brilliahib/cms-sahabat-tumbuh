@@ -1,3 +1,5 @@
+"use client";
+
 import DashboardTitle from "@/components/atoms/typography/DashboardTitle";
 import { Card, CardContent } from "@/components/ui/card";
 import {
