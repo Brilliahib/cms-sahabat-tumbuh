@@ -5,7 +5,7 @@ import NavbarDesktop from "@/components/organism/navbar/Navbar";
 export default function Home() {
   return (
     <>
-      <div className="mx-auto px-8 max-w-[1400px]">
+      <div className="mx-auto px-4 max-w-[1400px]">
         <NavbarDesktop />
         <HomeDesktop />
         <HomeContent />
