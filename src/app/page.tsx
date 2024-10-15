@@ -5,11 +5,11 @@ import NavbarDesktop from "@/components/organism/navbar/Navbar";
 export default function Home() {
   return (
     <>
+      <NavbarDesktop />
       <div className="mx-auto px-4 max-w-[1400px]">
-        <NavbarDesktop />
         <HomeDesktop />
-        <HomeContent />
       </div>
+      <HomeContent />
     </>
   );
 }

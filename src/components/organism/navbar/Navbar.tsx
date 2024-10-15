@@ -30,7 +30,7 @@ export default function NavbarDesktop() {
   ];
 
   return (
-    <div className="pad-x z-50 sticky top-0 flex md:mb-8 justify-between py-4 bg-white">
+    <div className="mx-auto px-4 max-w-[1400px] z-50 sticky top-0 flex md:mb-8 justify-between py-4 bg-white">
       <NavL />
       <nav className="hidden items-start font-semibold md:flex">
         {links.map((link) => (

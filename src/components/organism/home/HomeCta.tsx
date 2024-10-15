@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export default function HomeCta() {
   return (
     <>
-      <div className="relative p-4 py-8 bg-primary text-white rounded-xl">
+      <div className="overflow-hidden relative p-4 py-8 bg-primary text-white rounded-xl">
         <div className="text-center flex flex-col items-center justify-center space-y-8">
           <h1 className="font-bold text-3xl">
             Tunggu Apalagi? Cobain Sekarang!
