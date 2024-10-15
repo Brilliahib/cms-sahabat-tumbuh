@@ -16,24 +16,16 @@ export default function NavbarDesktop() {
   const pathname = usePathname();
   const links = [
     {
-      href: "/dashboard/tracking",
-      label: "Tracking",
-      active: pathname === "/dashboard/tracking",
+      href: "/",
+      label: "Beranda",
     },
     {
-      href: "/dashboard/games",
-      label: "Games",
-      active: pathname === "/dashboard/games",
+      href: "/about",
+      label: "Tentang",
     },
     {
-      href: "/detect",
-      label: "Detection",
-      active: pathname === "/detect",
-    },
-    {
-      href: "/article",
-      label: "Article",
-      active: pathname === "/article",
+      href: "/contact",
+      label: "Kontak",
     },
   ];
 
