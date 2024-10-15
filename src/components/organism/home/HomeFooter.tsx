@@ -9,18 +9,17 @@ export default function HomeFooter() {
           <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
             <div className="space-y-4">
               <Image
-                src="/images/logo.png"
+                src="/images/logo_full.png"
                 alt="Background"
                 width={1000}
                 height={1000}
-                className="md:w-[100px] w-[80px]"
+                className="md:w-[150px] w-[100px]"
                 loading="lazy"
               />
-              <h1 className="text-xl font-bold">Tumbuh Sahabat</h1>
             </div>
             <div className="space-y-4">
               <h1 className="font-bold">Fitur Kami</h1>
-              <ul className="space-y-2 font-medium text-muted-foreground">
+              <ul className="space-y-2 font-medium text-muted-foreground md:text-base text-sm">
                 <li>
                   <Link
                     href={"/dashboard/tracking/growth"}
@@ -68,7 +67,9 @@ export default function HomeFooter() {
           </div>
           <div className="text-center mt-8 space-y-8">
             <hr />
-            <p className="text-muted-foreground">© 2024 Tumbuh Sahabat</p>
+            <p className="text-muted-foreground text-sm">
+              © 2024 Tumbuh Sahabat
+            </p>
           </div>
         </div>
       </div>
