@@ -17,6 +17,8 @@ import { AxiosError } from "axios";
 import { useToast } from "@/hooks/use-toast";
 import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { baseUrl } from "@/utils/app";
 
 interface GameDetailProps {
   id: number;
@@ -97,12 +99,19 @@ export default function GameDetail({ id }: GameDetailProps) {
   return (
     <>
       <DashboardTitle title={data?.data.title ?? "Tidak ditemukan"} />
-      <div className="md:flex gap-4 w-full">
+      <div className="md:flex gap-4 w-full py-6">
         <div className="md:w-9/12">
           {questions.length > 0 && (
             <Card className="mb-4">
               <CardContent>
-                <div className="flex flex-col mb-8">
+                <div className="flex flex-col mb-8 mt-6">
+                  <Image
+                    src={`${baseUrl}/${questions[currentQuestionIndex].question_image}`}
+                    alt={questions[currentQuestionIndex].question_text}
+                    width={1000}
+                    height={1000}
+                    className="max-h-[300px] w-fit rounded-xl"
+                  />
                   <CardTitle className="mt-6 font-bold md:text-xl text-md">
                     {questions[currentQuestionIndex].question_text}
                   </CardTitle>
@@ -164,18 +173,6 @@ export default function GameDetail({ id }: GameDetailProps) {
             </CardContent>
           </Card>
         </div>
-      </div>
-
-      <div className="flex justify-between mt-4">
-        <Button onClick={handlePrev} disabled={currentQuestionIndex === 0}>
-          Previous
-        </Button>
-        <Button
-          onClick={handleNext}
-          disabled={currentQuestionIndex === questions.length - 1}
-        >
-          Next
-        </Button>
       </div>
     </>
   );

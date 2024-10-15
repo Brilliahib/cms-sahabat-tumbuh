@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -62,10 +61,6 @@ export default function GameCreateContent() {
   const [imagePreview, setImagePreview] = useState<
     Record<number, string | null>
   >({});
-  const isValidImage = (file: File): boolean => {
-    const validImageTypes = ["image/jpeg", "image/png"];
-    return validImageTypes.includes(file.type);
-  };
 
   const { mutate: addGameHandler, isPending } = useAddGame({
     onError: (error: AxiosError<any>) => {
@@ -95,19 +90,22 @@ export default function GameCreateContent() {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
-      if (isValidImage(file)) {
-        const lastQuestionIndex = questionFields.length - 1;
-        form.setValue(`questions.${lastQuestionIndex}.image`, file);
-        setImagePreview((prev) => ({
-          ...prev,
-          [lastQuestionIndex]: URL.createObjectURL(file),
-        }));
-      } else {
-        toast({
-          title: "Invalid file type!",
-          description: "Please upload a valid image (JPEG or PNG).",
-          variant: "destructive",
-        });
+      const lastQuestionIndex = questionFields.length - 1;
+
+      if (file) {
+        if (isValidImage(file)) {
+          form.setValue(`questions.${lastQuestionIndex}.image`, file);
+          setImagePreview((prev) => ({
+            ...prev,
+            [lastQuestionIndex]: URL.createObjectURL(file),
+          }));
+        } else {
+          toast({
+            title: "Invalid file type!",
+            description: "Please upload a valid image (JPEG or PNG).",
+            variant: "destructive",
+          });
+        }
       }
     },
     [form, questionFields.length, toast]
@@ -205,6 +203,7 @@ export default function GameCreateContent() {
                       </FormItem>
                     )}
                   />
+
                   <FormField
                     control={form.control}
                     name={`questions.${questionIndex}.image`}
@@ -212,53 +211,52 @@ export default function GameCreateContent() {
                       <FormItem>
                         <FormLabel>Gambar</FormLabel>
                         <FormControl>
-                          <div>
-                            <div
-                              {...getRootProps()}
-                              className={`border rounded-md border-input flex justify-center items-center cursor-pointer ${
-                                isDragActive
-                                  ? "border-gray-300"
-                                  : "border-gray-300"
-                              }`}
-                            >
-                              <Input {...getInputProps()} />
-                              {imagePreview[questionIndex] ? (
-                                <div className="relative w-full">
-                                  <Image
-                                    src={imagePreview[questionIndex]!}
-                                    alt="Preview"
-                                    className="max-h-[200px] w-full object-cover rounded-lg"
-                                    width={1000}
-                                    height={1000}
-                                  />
-                                  <Button
-                                    className="absolute top-2 right-2 shadow-lg px-3"
-                                    variant="destructive"
-                                    onClick={() => removeImage(questionIndex)}
-                                  >
-                                    <Trash2 className="h-4 w-4" />
-                                  </Button>
-                                </div>
-                              ) : isDragActive ? (
-                                <p className="text-blue-500">
-                                  Drop gambar di sini ...
+                          <div
+                            {...getRootProps()}
+                            className={`border rounded-md border-input flex justify-center items-center cursor-pointer ${
+                              isDragActive
+                                ? "border-gray-300"
+                                : "border-gray-300"
+                            }`}
+                          >
+                            <Input {...getInputProps()} />
+                            {imagePreview[questionIndex] ? (
+                              <div className="relative w-full">
+                                <Image
+                                  src={imagePreview[questionIndex]!}
+                                  alt="Preview"
+                                  className="max-h-[200px] w-full object-cover rounded-lg"
+                                  width={1000}
+                                  height={1000}
+                                />
+                                <Button
+                                  className="absolute top-2 right-2 shadow-lg px-3"
+                                  variant="destructive"
+                                  onClick={() => removeImage(questionIndex)}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            ) : isDragActive ? (
+                              <p className="text-blue-500">
+                                Drop gambar di sini ...
+                              </p>
+                            ) : (
+                              <div className="text-center space-y-4 py-4">
+                                <UploadIcon className="mx-auto h-6 w-6 text-muted-foreground" />
+                                <p className="text-muted-foreground text-sm">
+                                  Drag & drop gambar ke sini, atau klik untuk
+                                  memilih
                                 </p>
-                              ) : (
-                                <div className="text-center space-y-4 py-4">
-                                  <UploadIcon className="mx-auto h-6 w-6 text-muted-foreground" />
-                                  <p className="text-muted-foreground text-sm">
-                                    Drag & drop gambar ke sini, atau klik untuk
-                                    memilih
-                                  </p>
-                                </div>
-                              )}
-                            </div>
+                              </div>
+                            )}
                           </div>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+
                   <div className="grid grid-cols-2 gap-4">
                     {form
                       .getValues(`questions.${questionIndex}.choices`)
@@ -293,45 +291,49 @@ export default function GameCreateContent() {
                                       checked={field.value}
                                       onCheckedChange={field.onChange}
                                     />
-                                    <p className="text-sm">Jawaban Benar</p>
+                                    <span>Jawaban Benar</span>
                                   </div>
                                 </FormControl>
-                                <FormMessage />
                               </FormItem>
                             )}
                           />
                         </div>
                       ))}
                   </div>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      appendQuestion({
+                        question_text: "",
+                        image: null,
+                        choices: [
+                          { choice_text: "", is_correct: false },
+                          { choice_text: "", is_correct: false },
+                          { choice_text: "", is_correct: false },
+                          { choice_text: "", is_correct: false },
+                        ],
+                      });
+                    }}
+                  >
+                    Tambah Pertanyaan
+                  </Button>
                 </div>
               ))}
 
-              <Button
-                type="button"
-                onClick={() =>
-                  appendQuestion({
-                    question_text: "",
-                    choices: [
-                      { choice_text: "", is_correct: false },
-                      { choice_text: "", is_correct: false },
-                      { choice_text: "", is_correct: false },
-                      { choice_text: "", is_correct: false },
-                    ],
-                  })
-                }
-              >
-                Tambahkan Pertanyaan
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Menambahkan..." : "Tambahkan Game"}
               </Button>
-
-              <div className="flex justify-end">
-                <Button type="submit" disabled={isPending}>
-                  {isPending ? "Loading..." : "Tambahkan Game"}
-                </Button>
-              </div>
             </form>
           </Form>
         </CardContent>
       </Card>
     </div>
   );
+}
+
+function isValidImage(file: File) {
+  const validImageTypes = ["image/jpeg", "image/png"];
+  return validImageTypes.includes(file.type);
 }
