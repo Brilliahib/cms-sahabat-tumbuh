@@ -9,12 +9,6 @@ interface GameResponse {
   data: Games;
 }
 
-// Fungsi untuk memeriksa apakah file adalah gambar dengan tipe yang valid
-const isValidImage = (file: File) => {
-  const validTypes = ["image/jpeg", "image/png", "image/jpg"];
-  return validTypes.includes(file.type);
-};
-
 export const addGameHandler = async (
   body: GameType,
   token: string
@@ -30,6 +24,7 @@ export const addGameHandler = async (
       question.question_text
     );
 
+    // Memastikan image adalah instance dari File sebelum menambahkannya ke formData
     if (question.image && question.image instanceof File) {
       formData.append(`questions[${index}].image`, question.image);
     }
@@ -46,6 +41,7 @@ export const addGameHandler = async (
         isCorrectValue
       );
 
+      // Memastikan image adalah instance dari File sebelum menambahkannya ke formData
       if (choice.image && choice.image instanceof File) {
         formData.append(
           `questions[${index}].choices[${choiceIndex}].image`,

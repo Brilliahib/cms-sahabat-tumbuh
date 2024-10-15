@@ -15,14 +15,14 @@ export interface DetailGames {
 export interface QuestionGames {
   question_id: number;
   question_text: string;
-  image?: File;
+  question_image: File;
   choices: ChoicesGames[];
 }
 
 export interface ChoicesGames {
   choice_id: number;
   choice_text: string;
-  image?: File;
+  choice_image: File;
   is_correct: Boolean;
 }
 
