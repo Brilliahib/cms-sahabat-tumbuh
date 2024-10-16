@@ -77,7 +77,13 @@ export default function ArticleList() {
                     <CardDescription className="line-clamp-2">
                       <div
                         dangerouslySetInnerHTML={{ __html: article.content }}
-                        className="prose"
+                        className="prose max-h-[4.5rem] overflow-hidden text-ellipsis line-clamp-2"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitBoxOrient: "vertical",
+                          WebkitLineClamp: 2,
+                          overflow: "hidden",
+                        }}
                       />
                     </CardDescription>
                     <CardFooter className="p-0 text-muted-foreground text-sm">
