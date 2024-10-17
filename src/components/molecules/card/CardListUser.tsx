@@ -44,7 +44,7 @@ export default function CardListUser() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data?.data.map((user) => (
+                  {data?.data.slice(0, 4).map((user) => (
                     <TableRow key={user.id}>
                       <TableCell>{user?.name}</TableCell>
                       <TableCell>{user?.email}</TableCell>
