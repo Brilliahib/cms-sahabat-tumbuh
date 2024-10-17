@@ -51,7 +51,9 @@ export default function TrackingGreetingCard() {
               </div>
               <div>
                 <span className="text-muted-foreground">Jenis Kelamin</span>
-                <h1 className="font-bold">{data?.data.gender}</h1>
+                <h1 className="font-bold">
+                  {data?.data.gender === "male" ? "Laki-laki" : "Perempuan"}
+                </h1>
               </div>
               <div>
                 <span className="text-muted-foreground">Tanggal Lahir</span>
