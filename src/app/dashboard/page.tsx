@@ -20,15 +20,15 @@ export default function DashboardPage() {
     }
   }, [session, status, router]);
 
-  const { data, isPending } = useGetBaby(session?.access_token as string, {
+  const { data, isLoading } = useGetBaby(session?.access_token as string, {
     enabled: status === "authenticated",
   });
 
-  if (status === "loading") {
+  if (status === "loading" || isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (!data || data?.data === null) {
+  if (data?.data === null || !data) {
     return <AddBabyForm />;
   }
 

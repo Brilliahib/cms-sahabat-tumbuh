@@ -21,7 +21,7 @@ export default function DashboardTitle({ title }: DashboardTitleProps) {
   return (
     <>
       <div className="space-y-3">
-        <h1 className="font-paytone text-4xl">{title}</h1>
+        <h1 className="font-extrabold font-poppins text-4xl">{title}</h1>
         <p className="text-muted-foreground" suppressHydrationWarning>
           {format(time, "EEEE d MMMM yyyy, HH:mm:ss", { locale: id })}
         </p>
