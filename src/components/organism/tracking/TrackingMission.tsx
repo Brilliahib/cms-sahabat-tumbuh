@@ -22,7 +22,7 @@ export default function TrackingMission() {
           <CardContent className="p-6">
             <div className="flex justify-between items-center px-4">
               <h1 className="font-semibold text-sm">
-                Bunda memberikan makanan sehat untuk Si Kecil
+                Bunda mengajak Si Kecil untuk bermain
               </h1>
               <Checkbox />
             </div>
@@ -32,7 +32,7 @@ export default function TrackingMission() {
           <CardContent className="p-6">
             <div className="flex justify-between items-center px-4">
               <h1 className="font-semibold text-sm">
-                Bunda memberikan makanan sehat untuk Si Kecil
+                Bunda memperbarui data pertumbuhan Si Kecil
               </h1>
               <Checkbox />
             </div>
@@ -42,7 +42,7 @@ export default function TrackingMission() {
           <CardContent className="p-6">
             <div className="flex justify-between items-center px-4">
               <h1 className="font-semibold text-sm">
-                Bunda memberikan makanan sehat untuk Si Kecil
+                Bunda membaca artikel untuk mendukung kesehatan Si Kecil
               </h1>
               <Checkbox />
             </div>
