@@ -25,8 +25,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export default function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
@@ -37,7 +39,9 @@ export default function LoginForm() {
   const router = useRouter();
 
   const onSubmit = async (body: LoginType) => {
+    setIsLoading(true);
     const res = await signIn("credentials", { ...body, redirect: false });
+    setIsLoading(false);
 
     if (!res || res.error) {
       toast({
@@ -113,8 +117,8 @@ export default function LoginForm() {
                   )}
                 />
                 <div>
-                  <Button type="submit" className="w-full">
-                    Masuk
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? "Loading..." : "Masuk"}{" "}
                   </Button>
                 </div>
               </form>
